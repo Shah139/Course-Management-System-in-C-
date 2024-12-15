@@ -1,0 +1,111 @@
+using System;
+
+public class Courses
+{
+    public string CourseTitle { get; set; }
+    public int CourseDuration { get; set; }
+    public int Fee { get; set; }
+}
+
+public class Info
+{
+    public string Name { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public string Address { get; set; }
+    public int NIDCardNumber { get; set; }
+    public string Email { get; set; }
+
+    public Info(string name, DateTime dateOfBirth, string address, int nidCardNumber, string email)
+    {
+        Name = name;
+        DateOfBirth = dateOfBirth;
+        Address = address;
+        NIDCardNumber = nidCardNumber;
+        Email = email;
+    }
+}
+
+public class Students : Info
+{
+    public DateTime AdmissionDate { get; set; }
+    public int CompletedCourse { get; set; }
+
+    public Students(string name, DateTime dateOfBirth, string address, int nidCardNumber, string email, DateTime admissionDate, int completedCourse)
+        : base(name, dateOfBirth, address, nidCardNumber, email)
+    {
+        AdmissionDate = admissionDate;
+        CompletedCourse = completedCourse;
+    }
+}
+
+public class Tutor : Info
+{
+    public string[] CourseTech { get; set; }
+    public int Salary { get; set; }
+
+    public Tutor(string name, DateTime dateOfBirth, string address, int nidCardNumber, string email, string[] courseTech, int salary)
+        : base(name, dateOfBirth, address, nidCardNumber, email)
+    {
+        CourseTech = courseTech;
+        Salary = salary;
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+  
+        Console.WriteLine("Enter Course Title:");
+        string courseTitle = Console.ReadLine();
+
+        Console.WriteLine("Enter Course Duration (in weeks):");
+        int courseDuration = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter Course Fee:");
+        int courseFee = int.Parse(Console.ReadLine());
+
+        Courses course = new Courses
+        {
+            CourseTitle = courseTitle,
+            CourseDuration = courseDuration,
+            Fee = courseFee
+        };
+        Console.WriteLine("Enter Student Name:");
+        string studentName = Console.ReadLine();
+
+        Console.WriteLine("Enter Date of Birth (yyyy-mm-dd):");
+        DateTime studentDOB = DateTime.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter Address:");
+        string studentAddress = Console.ReadLine();
+
+        Console.WriteLine("Enter NID Card Number:");
+        int studentNID = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter Email:");
+        string studentEmail = Console.ReadLine();
+
+        Console.WriteLine("Enter Admission Date (yyyy-mm-dd):");
+        DateTime admissionDate = DateTime.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter Completed Courses:");
+        int completedCourses = int.Parse(Console.ReadLine());
+
+        Students student = new Students(studentName, studentDOB, studentAddress, studentNID, studentEmail, admissionDate, completedCourses);
+
+        Console.WriteLine("\n--- Course Details ---");
+        Console.WriteLine($"Title: {course.CourseTitle}");
+        Console.WriteLine($"Duration: {course.CourseDuration} weeks");
+        Console.WriteLine($"Fee: {course.Fee} USD");
+
+        Console.WriteLine("\n--- Student Details ---");
+        Console.WriteLine($"Name: {student.Name}");
+        Console.WriteLine($"Date of Birth: {student.DateOfBirth.ToShortDateString()}");
+        Console.WriteLine($"Address: {student.Address}");
+        Console.WriteLine($"NID Card Number: {student.NIDCardNumber}");
+        Console.WriteLine($"Email: {student.Email}");
+        Console.WriteLine($"Admission Date: {student.AdmissionDate.ToShortDateString()}");
+        Console.WriteLine($"Completed Courses: {student.CompletedCourse}");
+    }
+}
